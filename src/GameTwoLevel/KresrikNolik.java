@@ -12,8 +12,11 @@ class KrestikNolik {
     public static boolean isWin = false;
     static int a = 0;
     static int b = 0;
+    static int c=0;
 
+  static   boolean Win = false;
     public static void main(String[] args) throws IOException {
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         int randomPlayer = (int) (Math.random() * 2 + 1);
@@ -67,45 +70,58 @@ class KrestikNolik {
 
             if (Arrays.deepToString(field).contains(Integer.toString(num)) && num <= 9 && num > 0) {
                 switch (num) {
+
                     case 1:
                         field[0][0] = crossOrZero;
+                        c++;
                         break;
                     case 2:
+                        c++;
                         field[0][1] = crossOrZero;
                         break;
                     case 3:
+                        c++;
                         field[0][2] = crossOrZero;
                         break;
                     case 4:
+                        c++;
                         field[1][0] = crossOrZero;
                         break;
                     case 5:
+                        c++;
                         field[1][1] = crossOrZero;
                         break;
                     case 6:
+                        c++;
                         field[1][2] = crossOrZero;
                         break;
                     case 7:
+                        c++;
                         field[2][0] = crossOrZero;
                         break;
                     case 8:
+                        c++;
                         field[2][1] = crossOrZero;
                         break;
                     case 9:
+                        c++;
                         field[2][2] = crossOrZero;
                         break;
                 }
             } else {
-                System.out.println("Введите число из оставшихся на поле!");
-                continue;
+                if (c < 10) {
+                    System.out.println("Введите число из оставшихся на поле!");
+                    continue;
+                } else {
+                    break;
+                }
             }
-
 
             checkingForMatch(field);
 
             draw(field);
             if (isWin) {
-                if (draw(field)) {
+                if ( c==9 ) {
 
                     System.out.println("Ничья");
 
@@ -117,12 +133,10 @@ class KrestikNolik {
                     } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     }
-
-
-
+                        break;
 
                 } else
-                    System.out.println("Победа: " + crossOrZero + "\n" + "сыграем еще?");
+                    System.out.println("Победа: " + crossOrZero );
 
 
                 try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
@@ -133,8 +147,9 @@ class KrestikNolik {
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }
-                printField(field);
 
+                printField(field);
+                break;
 
             } else
                 System.out.println("Пока никто не выиграл. Играем дальше");
@@ -151,24 +166,38 @@ class KrestikNolik {
 
 
     public static void printField(char[][] field) { // печать поля
-
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
                 if (j != 2) {
                     System.out.print(field[i][j] + "|");
-                } else System.out.print(field[i][j]);
+                } else
+                    System.out.print(field[i][j]);
+
 
             }
             System.out.println();
 
 
         }
-    }
 
 
 
 
-    public static char[][] checkingForMatch(char[][] field) { // проверка на совпадение трёх элементов
+
+
+
+   // public static char[][] Wist(char[][] field) {
+    //    if (!Win) {
+     //       try {
+            //    printField(field);
+      //      } catch (StackOverflowError e) {
+               // System.out.println("");
+      //      }
+        }
+
+
+
+        public static char[][] checkingForMatch(char[][] field) { // проверка на совпадение трёх элементов
         for (int i = 0; i < field.length; i++) {
             if (field[i][0] == field[i][1] && field[i][0] == field[i][2] || // сравнение по горизонтали
                     field[0][i] == field[1][i] && field[0][i] == field[2][i] || // сравнение по вертикали
@@ -187,13 +216,13 @@ class KrestikNolik {
 
 
     public static boolean draw (char[][] field){
-        for (int a=0;a< field.length;a++){
-            if (a> field.length-1){
+
+            if (c==10) {
                 isWin = true;
-                break;
+
             }
-        }
 
         return true;
     }
+
 }
