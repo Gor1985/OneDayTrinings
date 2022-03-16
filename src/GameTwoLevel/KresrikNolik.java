@@ -40,7 +40,7 @@ class KrestikNolik {
                 crossOrZero = 'x';
                 a = a + 1;
                 String e = Integer.toString(a);
-                try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+                try (FileWriter writer = new FileWriter("GameTwoLevel/bloknot.txt", true)) {
                     // запись всей строки
                     if (randomPlayer==1) {
                         String text = "Игрок " + player1 + " получает " + e + " очков\n";
@@ -58,7 +58,7 @@ class KrestikNolik {
             } else crossOrZero = 'o';
             b = b + 1;
             String z = Integer.toString(b);
-            try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+            try (FileWriter writer = new FileWriter("GameTwoLevel/bloknot.txt", true)) {
                 // запись всей строки
 
                 if (randomPlayer==1) {
@@ -142,7 +142,7 @@ class KrestikNolik {
 
                     System.out.println("Ничья");
 
-                    try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+                    try (FileWriter writer = new FileWriter("GameTwoLevel/bloknot.txt", true)) {
                         // запись всей строки
                         String text3 = "Ничья";
                         writer.write(text3);
@@ -156,7 +156,7 @@ class KrestikNolik {
                     System.out.println("Победа: " + player1 + crossOrZero);
 
 
-                    try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+                    try (FileWriter writer = new FileWriter("GameTwoLevel/bloknot.txt", true)) {
                         // запись всей строки
                         String text2 = "Победил игрок " + player1 + crossOrZero + "\n";
                         writer.write(text2);
@@ -170,7 +170,7 @@ class KrestikNolik {
 
                     System.out.println("Победа: " + player2 + crossOrZero);
 
-                    try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+                    try (FileWriter writer = new FileWriter("GameTwoLevel/bloknot.txt", true)) {
                         // запись всей строки
                         String text4 = "Победил игрок " + player2 + crossOrZero + "\n";
                         writer.write(text4);
@@ -179,7 +179,7 @@ class KrestikNolik {
                         System.out.println(ex.getMessage());
                     }
 
-                    try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+                    try (FileWriter writer = new FileWriter("GameTwoLevel/bloknot.txt", true)) {
                         // запись всей строки
                         String text2 = "Победил игрок " + player2 + crossOrZero + "\n";
                         writer.write(text2);
@@ -193,7 +193,7 @@ class KrestikNolik {
 
             } else
                 System.out.println("Пока никто не выиграл. Играем дальше");
-            try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+            try (FileWriter writer = new FileWriter("GameTwoLevel/bloknot.txt", true)) {
                 // запись всей строки
                 String text3 = "Пока никто не выиграл. Играем дальше";
                 writer.write(text3);
@@ -206,7 +206,7 @@ class KrestikNolik {
             if (a > b) {
                 if (randomPlayer==1){
                     System.out.println("Ведет игрок х: "+player1+", у него "+" "+a+" очков");
-                    try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+                    try (FileWriter writer = new FileWriter("GameTwoLevel/bloknot.txt", true)) {
                         // запись всей строки
                         String text3 = "Ведет игрок х: "+player1+", у него "+" "+a+" очков, "+" у игрока "+player2+" "+b+" очков";
                         writer.write(text3);
@@ -216,7 +216,7 @@ class KrestikNolik {
                     }
 
                 }else System.out.println("Ведет игрок х: "+player2+", у него "+" "+a+" очков ,у игрока "+player1+" "+b+" очков");
-                try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+                try (FileWriter writer = new FileWriter("GameTwoLevel/bloknot.txt", true)) {
                     // запись всей строки
                     String text4 = "Ведет игрок х: "+player2+", у него "+" "+a+" очков, "+" у игрока "+player1+" "+b+" очков";
                     writer.write(text4);
@@ -227,7 +227,7 @@ class KrestikNolik {
             } else {
                 if (randomPlayer==1){
                     System.out.println("Ведет игрок 0: "+player1+", у него "+" "+b+" очков, "+" у игрока "+player2+" "+a+" очков");
-                    try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+                    try (FileWriter writer = new FileWriter("GameTwoLevel/bloknot.txt", true)) {
                         // запись всей строки
                         String text3 = "Ведет игрок O: "+player1+", у него "+b+" очков, "+" у игрока "+player2+" "+a+" очков";
                         writer.write(text3);
@@ -236,7 +236,7 @@ class KrestikNolik {
                         System.out.println(ex.getMessage());
                     }
                 }else System.out.println("Ведет игрок 0: "+player2+", у него "+" "+b+" очков ");
-                try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+                try (FileWriter writer = new FileWriter("GameTwoLevel/bloknot.txtt", true)) {
                     // запись всей строки
                     String text6 = "Ведет игрок O: "+player2+", у него "+b+" очков, "+" у игрока "+player1+" "+a+" очков";
                     writer.write(text6);
