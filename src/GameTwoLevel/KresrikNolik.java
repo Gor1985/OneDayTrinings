@@ -114,26 +114,21 @@ class KrestikNolik {
                 continue;
             }
             if (c >= 9) {
-                System.out.println("Использованы все ходы. Ничья");
-                System.exit(1);}
+                System.out.println("Ничья");
+                try (FileWriter writer = new FileWriter("src/GameTwoLevel/bloknot.txt", true)) {
+                    // запись всей строки
+                    String text3 = "Ничья";
+                    writer.write(text3);
+                    writer.flush();
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                System.exit(1);
+            }
 
             checkingForMatch(field);
             if (isWin) {
-                if (c >= 8) {
-                    System.out.println("Ничья");
-                    try (FileWriter writer = new FileWriter("src/GameTwoLevel/bloknot.txt", true)) {
-                        // запись всей строки
-                        String text3 = "Ничья";
-                        writer.write(text3);
-                        writer.flush();
-                    } catch (IOException ex) {
-                        System.out.println(ex.getMessage());
-                    }
-                    System.exit(1);
 
-
-
-                } else
                     System.out.println("Победа: " + crossOrZero);
 
 
