@@ -10,49 +10,62 @@ import java.util.Arrays;
 // часть честно слизал с интернета, добавил возможность записи в файл, счет очков и запись в файл, вывод победителя
 class KrestikNolik {
     public static boolean isWin = false;
-    static int a = 0;
-    static int b = 0;
+    public static int id;
+    private static int a = 0;
+    private static int b = 0;
 
+    static int c = 0;
     public static void main(String[] args) throws IOException {
+
+        PlayerOne playerOne = new PlayerOne();
+        PlayerTwo playerTwo = new PlayerTwo();
+        Switch aSwitch = new Switch();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        int randomPlayer = (int) (Math.random() * 2 + 1);
+        try {
+            System.out.println("Первый игрок, введите имя ");
+            String player1 = reader.readLine();
+            playerOne.setName(player1);
+
+            System.out.println("Второй игрок, введите имя ");
+            String player2 = reader.readLine();
+            playerTwo.setName(player2);
+
+        } catch (StackOverflowError e) {
+            e.printStackTrace();
+        }
+
+
+       int randomPlayer = (int) (Math.random() * 2 + 1);
         if (randomPlayer == 1) {
-            System.out.println("Player1 ходит первым!" + '\n');
-        } else System.out.println("Player2 ходит первым!" + '\n');
-        System.out.println("Введите число от 1 до 9, чтобы сделать Ваш ход: " + '\n');
+            System.out.println(PlayerOne.getName() + " ходит первым!" + '\n');
+
+        } else {
+
+            System.out.println(PlayerTwo.getName() + " ходит первым!" + '\n');
+            System.out.println("Введите число от 1 до 9, чтобы сделать Ваш ход: " + '\n');
+
+        }
+
+
+
         char[][] field = {{'1', '2', '3'},
                 {'4', '5', '6'},
                 {'7', '8', '9'}};
 
-        char crossOrZero;
-        int switcher = 0; // переключатель между первым и вторым игроком
 
+        char crossOrZero;
+
+        int switcher = 0; // переключатель между первым и вторым игроком
         while (true) {
             if (switcher % 2 == 0) {
+
                 crossOrZero = 'x';
                 a = a + 1;
                 String e = Integer.toString(a);
-                try (FileWriter writer = new FileWriter("src/GameTwoLevel/bloknot.txt", true)) {
-                    // запись всей строки
-                    String text = "Игрок x получает " + e + " очков\n";
-                    writer.write(text);
-                    writer.flush();
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
 
             } else crossOrZero = 'o';
             b = b + 1;
-            String z = Integer.toString(b);
-            try (FileWriter writer = new FileWriter("src/GameTwoLevel/bloknot.txt", true)) {
-                // запись всей строки
-                String text1 = "Игрок o получает " + z + " очков\n";
-                writer.write(text1);
-                writer.flush();
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
 
 
             printField(field);
@@ -60,6 +73,7 @@ class KrestikNolik {
             int num;
             try {
                 num = Integer.parseInt(reader.readLine()); // запрет ввода символов, отличных от чисел
+                c++;
             } catch (NumberFormatException e) {
                 System.out.println("Число, только число!");
                 continue;
@@ -100,15 +114,10 @@ class KrestikNolik {
                 continue;
             }
 
-
             checkingForMatch(field);
-
-            draw(field);
             if (isWin) {
-                if (draw(field)) {
-
+                if (c == 9) {
                     System.out.println("Ничья");
-
                     try (FileWriter writer = new FileWriter("src/GameTwoLevel/bloknot.txt", true)) {
                         // запись всей строки
                         String text3 = "Ничья";
@@ -120,10 +129,8 @@ class KrestikNolik {
                     break;
 
 
-
-
                 } else
-                    System.out.println("Победа: " + crossOrZero + "\n" + "сыграем еще?");
+                    System.out.println("Победа: " + crossOrZero);
 
 
                 try (FileWriter writer = new FileWriter("src/GameTwoLevel/bloknot.txt", true)) {
@@ -134,7 +141,7 @@ class KrestikNolik {
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }
-                printField(field);
+                break;
 
 
             } else
@@ -142,29 +149,40 @@ class KrestikNolik {
 
 
             if (a > b) {
-                System.out.println("Ведет игрок х");
+                if (aSwitch.randomPlayer == 1) {
+                    System.out.println("Ведет игрок х: " + playerOne.getName() + ", у него " + " " + a + " очков, у игрока " + playerTwo.getName() + b + "очков");
+
+                } else
+                    System.out.println("Ведет игрок х: " + playerTwo.getName() + ", у него " + " " + a + " очков ,у игрока " + playerOne.getName() + " " + b + " очков");
+
             } else {
-                System.out.println("Ведет игрок o");
+                if (aSwitch.randomPlayer == 1) {
+                    System.out.println("Ведет игрок 0: " + playerOne.getName() + ", у него " + " " + b + " очков, " + " у игрока " + playerTwo.getName() + " " + a + " очков");
+
+
+                } else
+                    System.out.println("Ведет игрок 0: " + playerTwo.getName() + ", у него " + " " + b + " очков , у игрока " + playerOne.getName() + " " + b + " очков");
+
             }
             switcher++;
         }
     }
 
+        public static void printField ( char[][] field){ // печать поля
 
-    public static void printField(char[][] field) { // печать поля
+            for (int i = 0; i < field.length; i++) {
+                for (int j = 0; j < field[i].length; j++) {
+                    if (j != 2) {
+                        System.out.print(field[i][j] + "|");
+                    } else System.out.print(field[i][j]);
 
-        for (int i = 0; i < field.length; i++) {
-            for (int j = 0; j < field[i].length; j++) {
-                if (j != 2) {
-                    System.out.print(field[i][j] + "|");
-                } else System.out.print(field[i][j]);
+                }
+                System.out.println();
+
 
             }
-            System.out.println();
-
-
         }
-    }
+
 
 
 
