@@ -13,7 +13,7 @@ public class Cash {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {// вывел метод, что бы запустить и проверить кэш
         while (true) {
             Scanner scanner = new Scanner(System.in);
             int a = scanner.nextInt();

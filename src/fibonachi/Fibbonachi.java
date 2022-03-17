@@ -12,11 +12,12 @@ public class Fibbonachi {
 
     public static void main(String[] args) {
 //реализация
+           while (true) {
+               Scanner scanner = new Scanner(System.in);
+               int n = scanner.nextInt();
 
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        if (n != 0)
-            System.out.print(fib(n));
+               System.out.print(fib(n));
+           }
 
 
     }
