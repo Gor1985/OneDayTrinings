@@ -33,7 +33,7 @@ class KrestikNolik {
                 crossOrZero = 'x';
                 a = a + 1;
                 String e = Integer.toString(a);
-                try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+                try (FileWriter writer = new FileWriter("src/GameTwoLevel/bloknot.txt", true)) {
                     // запись всей строки
                     String text = "Игрок x получает " + e + " очков\n";
                     writer.write(text);
@@ -45,7 +45,7 @@ class KrestikNolik {
             } else crossOrZero = 'o';
             b = b + 1;
             String z = Integer.toString(b);
-            try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+            try (FileWriter writer = new FileWriter("src/GameTwoLevel/bloknot.txt", true)) {
                 // запись всей строки
                 String text1 = "Игрок o получает " + z + " очков\n";
                 writer.write(text1);
@@ -109,7 +109,7 @@ class KrestikNolik {
 
                     System.out.println("Ничья");
 
-                    try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+                    try (FileWriter writer = new FileWriter("src/GameTwoLevel/bloknot.txt", true)) {
                         // запись всей строки
                         String text3 = "Ничья";
                         writer.write(text3);
@@ -117,6 +117,7 @@ class KrestikNolik {
                     } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     }
+                    break;
 
 
 
@@ -125,7 +126,7 @@ class KrestikNolik {
                     System.out.println("Победа: " + crossOrZero + "\n" + "сыграем еще?");
 
 
-                try (FileWriter writer = new FileWriter("D:\\Запись файла.txt", true)) {
+                try (FileWriter writer = new FileWriter("src/GameTwoLevel/bloknot.txt", true)) {
                     // запись всей строки
                     String text2 = "Победил игрок " + crossOrZero + "\n";
                     writer.write(text2);
