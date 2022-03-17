@@ -113,10 +113,13 @@ class KrestikNolik {
                 System.out.println("Введите число из оставшихся на поле!");
                 continue;
             }
+            if (c >= 9) {
+                System.out.println("Использованы все ходы. Ничья");
+                System.exit(1);}
 
             checkingForMatch(field);
             if (isWin) {
-                if (c == 9) {
+                if (c >= 8) {
                     System.out.println("Ничья");
                     try (FileWriter writer = new FileWriter("src/GameTwoLevel/bloknot.txt", true)) {
                         // запись всей строки
@@ -126,7 +129,8 @@ class KrestikNolik {
                     } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     }
-                    break;
+                    System.exit(1);
+
 
 
                 } else
